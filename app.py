@@ -1,11 +1,9 @@
-"""
-Smart Resume AI - Main Application
-"""
+
 import streamlit as st
 
 # Set page config at the very beginning
 st.set_page_config(
-    page_title="Smart Resume AI",
+    page_title="AI Resume Parser",
     page_icon="🚀",
     layout="wide"
 )
@@ -22,7 +20,6 @@ from config.database import (
 )
 from config.job_roles import JOB_ROLES
 from config.courses import COURSES_BY_CATEGORY, RESUME_VIDEOS, INTERVIEW_VIDEOS, get_courses_for_role, get_category_for_role
-from dashboard.dashboard import DashboardManager
 import requests
 from streamlit_lottie import st_lottie
 import plotly.graph_objects as go
@@ -78,14 +75,12 @@ class ResumeApp:
             "🏠 HOME": self.render_home,
             "🔍 RESUME ANALYZER": self.render_analyzer,
             "📝 RESUME BUILDER": self.render_builder,
-            "📊 DASHBOARD": self.render_dashboard,
             "🎯 JOB SEARCH": self.render_job_search,
             "💬 FEEDBACK": self.render_feedback_page,
             "ℹ️ ABOUT": self.render_about
         }
         
         # Initialize dashboard manager
-        self.dashboard_manager = DashboardManager()
         
         self.analyzer = ResumeAnalyzer()
         self.builder = ResumeBuilder()
@@ -483,10 +478,6 @@ class ResumeApp:
             return None
         finally:
             conn.close()
-
-    def render_dashboard(self):
-        """Render the dashboard page"""
-        self.dashboard_manager.render_dashboard()
 
     def render_empty_state(self, icon, message):
         """Render an empty state with icon and message"""
@@ -1006,49 +997,20 @@ class ResumeApp:
         # Hero Section
         st.markdown("""
             <div class="hero-section">
-                <h1 class="hero-title">About Smart Resume AI</h1>
+                <h1 class="hero-title">About AI Resume Parser</h1>
                 <p class="hero-subtitle">A powerful AI-driven platform for optimizing your resume</p>
             </div>
         """, unsafe_allow_html=True)
         
-        # Profile Section
-        st.markdown(f"""
-            <div class="profile-section">
-                <img src="{image_base64 if image_base64 else 'https://avatars.githubusercontent.com/Hunterdii'}" 
-                     alt="Het Patel" 
-                     class="profile-image"
-                     onerror="this.onerror=null; this.src='https://avatars.githubusercontent.com/Hunterdii';">
-                <h2 class="profile-name">Het Patel (Hunterdii)</h2>
-                <p class="profile-title">Full Stack Developer & AI/ML Enthusiast</p>
-                <div class="social-links">
-                    <a href="https://github.com/Hunterdii" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/patel-hetkumar-sandipbhai-8b110525a/" class="social-link" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:hunterdii9879@gmail.com" class="social-link" target="_blank">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-                <p class="bio-text">
-                    Hello! I'm a passionate Full Stack Developer with expertise in AI and Machine Learning. 
-                    I created Smart Resume AI to revolutionize how job seekers approach their career journey. 
-                    With my background in both software development and AI, I've designed this platform to 
-                    provide intelligent, data-driven insights for resume optimization.
-                </p>
-            </div>
-        """, unsafe_allow_html=True)
+       
         
         # Vision Section
         st.markdown("""
             <div class="vision-section">
                 <i class="fas fa-lightbulb vision-icon"></i>
-                <h2 class="vision-title">Our Vision</h2>
+                <h2 class="vision-title">Our Moto</h2>
                 <p class="vision-text">
-                    "Smart Resume AI represents my vision of democratizing career advancement through technology. 
-                    By combining cutting-edge AI with intuitive design, this platform empowers job seekers at 
-                    every career stage to showcase their true potential and stand out in today's competitive job market."
+                    " AI Resume Parser embodies the goal of making career growth accessible to all via technology. By merging advanced AI with user-friendly design, this platform enables job candidates at all stages of their careers to highlight their genuine abilities and differentiate themselves in the current competitive job landscape."
                 </p>
             </div>
         """, unsafe_allow_html=True)
@@ -1060,21 +1022,14 @@ class ResumeApp:
                     <i class="fas fa-robot feature-icon"></i>
                     <h3 class="feature-title">AI-Powered Analysis</h3>
                     <p class="feature-description">
-                        Advanced AI algorithms provide detailed insights and suggestions to optimize your resume for maximum impact.
+                        Advanced AI algorithms offer comprehensive insights and recommendations to enhance your resume for optimal effect.
                     </p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-chart-line feature-icon"></i>
                     <h3 class="feature-title">Data-Driven Insights</h3>
                     <p class="feature-description">
-                        Make informed decisions with our analytics-based recommendations and industry insights.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt feature-icon"></i>
-                    <h3 class="feature-title">Privacy First</h3>
-                    <p class="feature-description">
-                        Your data security is our priority. We ensure your information is always protected and private.
+                        Make knowledgeable choices with our recommendations based on analytics and insights from the industry.
                     </p>
                 </div>
             </div>
@@ -1451,8 +1406,8 @@ class ResumeApp:
         
         # Hero Section
         hero_section(
-            "Smart Resume AI",
-            "Transform your career with AI-powered resume analysis and building. Get personalized insights and create professional resumes that stand out."
+            "AI Resume Parser",
+            "An Innovative Approach to combine resume building , parsing easier and job finding easier for students of VIT , Created by the Team : Sabarinathan , Ragavendra , Dhanushraja , Gayathri",
         )
         
         # Features Section
@@ -1461,13 +1416,13 @@ class ResumeApp:
         feature_card(
             "fas fa-robot",
             "AI-Powered Analysis",
-            "Get instant feedback on your resume with advanced AI analysis that identifies strengths and areas for improvement."
+            "Receive immediate insights on your resume through sophisticated AI evaluation that highlights strengths and spots for enhancement."
         )
         
         feature_card(
             "fas fa-magic",
             "Smart Resume Builder",
-            "Create professional resumes with our intelligent builder that suggests optimal content and formatting."
+            "Create all types of ATS friendly resumes instantly with our intelligent builder that suggest required content and formatting."
         )
         
         feature_card(
@@ -1496,7 +1451,7 @@ class ResumeApp:
         # Admin login/logout in sidebar
         with st.sidebar:
             st_lottie(self.load_lottie_url("https://assets5.lottiefiles.com/packages/lf20_xyadoh9h.json"), height=200, key="sidebar_animation")
-            st.title("Smart Resume AI")
+            st.title("AI Resume Parser")
             st.markdown("---")
             
             # Navigation buttons
@@ -1510,35 +1465,7 @@ class ResumeApp:
             st.markdown("<br><br>", unsafe_allow_html=True)
             st.markdown("---")
             
-            # Admin Login/Logout section at bottom
-            if st.session_state.get('is_admin', False):
-                st.success(f"Logged in as: {st.session_state.get('current_admin_email')}")
-                if st.button("Logout", key="logout_button"):
-                    try:
-                        log_admin_action(st.session_state.get('current_admin_email'), "logout")
-                        st.session_state.is_admin = False
-                        st.session_state.current_admin_email = None
-                        st.success("Logged out successfully!")
-                        st.rerun()
-                    except Exception as e:
-                        st.error(f"Error during logout: {str(e)}")
-            else:
-                with st.expander("👤 Admin Login"):
-                    admin_email_input = st.text_input("Email", key="admin_email_input")
-                    admin_password = st.text_input("Password", type="password", key="admin_password_input")
-                    if st.button("Login", key="login_button"):
-                            try:
-                                if verify_admin(admin_email_input, admin_password):
-                                    st.session_state.is_admin = True
-                                    st.session_state.current_admin_email = admin_email_input
-                                    log_admin_action(admin_email_input, "login")
-                                    st.success("Logged in successfully!")
-                                    st.rerun()
-                                else:
-                                    st.error("Invalid credentials")
-                            except Exception as e:
-                                st.error(f"Error during login: {str(e)}")
-        
+            
         # Force home page on first load
         if 'initial_load' not in st.session_state:
             st.session_state.initial_load = True
