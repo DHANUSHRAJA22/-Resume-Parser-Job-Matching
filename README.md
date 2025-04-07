@@ -23,5 +23,37 @@ An intelligent AI-powered Resume Parser and Job Matching System that leverages N
 - **AI Models**: Custom-trained DL models
 - **Utilities**: OpenAI Embeddings (optional), Excel Export
 
-## 📂 Project Structure
 
+ 📦 Setup Instructions
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/DHANUSHRAJA22/-Resume-Parser-Job-Matching.git
+   cd -Resume-Parser-Job-Matching
+Create and activate virtual environment (optional but recommended)
+
+bash
+Copy
+Edit
+python -m venv venv
+venv\Scripts\activate       # On Windows
+Install dependencies
+
+bash
+Copy
+Edit
+pip install -r requirements.txt
+Run the app
+
+bash
+Copy
+Edit
+streamlit run app.py
+💡 Future Enhancements
+🔒 Add authentication
+
+☁️ Cloud deployment (e.g., Streamlit Cloud, Render, AWS)
+
+🧾 OCR-based parsing for scanned resumes
+
+📈 Admin dashboard with analytics
